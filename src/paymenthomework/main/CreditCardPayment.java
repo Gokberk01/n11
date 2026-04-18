@@ -1,4 +1,4 @@
-package PaymentHomework.Main;
+package paymenthomework.main;
 
 public class CreditCardPayment implements PaymentMethod {
 

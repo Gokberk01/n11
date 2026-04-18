@@ -1,6 +1,6 @@
-package PaymentHomework.Test;
-import PaymentHomework.Main.PaymentMethod;
-import PaymentHomework.Main.PaymentService;
+package paymenthomework.test;
+import paymenthomework.main.PaymentMethod;
+import paymenthomework.main.PaymentService;
 
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
