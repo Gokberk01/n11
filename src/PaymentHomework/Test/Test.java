@@ -7,6 +7,6 @@ public class Test {
     public static void main(String[] args)
     {
         PaymentService paymentService = new PaymentService(new CreditCardPayment());
-        paymentService.processPayment(4500);
+        paymentService.processPayment(4700);
     }
 }
