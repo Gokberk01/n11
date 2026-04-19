@@ -1,4 +1,4 @@
-package com.n11.bootcamp.payment.main.models;
+package com.n11.bootcamp.payment.main.model;
 
 import com.n11.bootcamp.payment.main.interfaces.PaymentMethod;
 
