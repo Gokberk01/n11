@@ -1,6 +1,6 @@
-package paymenthomework.test;
-import paymenthomework.main.PaymentMethod;
-import paymenthomework.main.PaymentService;
+package com.n11.bootcamp.payment.test;
+import com.n11.bootcamp.payment.main.PaymentMethod;
+import com.n11.bootcamp.payment.main.PaymentService;
 
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;

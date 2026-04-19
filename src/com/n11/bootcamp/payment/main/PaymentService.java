@@ -1,4 +1,4 @@
-package paymenthomework.main;
+package com.n11.bootcamp.payment.main;
 
 public class PaymentService {
 

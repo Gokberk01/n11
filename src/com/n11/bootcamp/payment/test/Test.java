@@ -1,7 +1,7 @@
-package paymenthomework.test;
+package com.n11.bootcamp.payment.test;
 
-import paymenthomework.main.CreditCardPayment;
-import paymenthomework.main.PaymentService;
+import com.n11.bootcamp.payment.main.CreditCardPayment;
+import com.n11.bootcamp.payment.main.PaymentService;
 
 public class Test {
     public static void main(String[] args)
