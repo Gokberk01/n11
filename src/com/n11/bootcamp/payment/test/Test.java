@@ -4,6 +4,7 @@ import com.n11.bootcamp.payment.main.factory.PaymentMethodFactory;
 import com.n11.bootcamp.payment.main.interfaces.PaymentMethod;
 import com.n11.bootcamp.payment.main.service.PaymentService;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Test {
@@ -21,14 +22,29 @@ public class Test {
             String paymentMethodInput = scan.nextLine();
 
             System.out.println("Please enter your amount to pay : ");
-            int amount = scan.nextInt();
+            double amount = scan.nextDouble();
 
+            //----------- Reflection
+            Class<?> cls = Class.forName("com.n11.bootcamp.payment.main.factory.PaymentMethodFactory");
+            Object paymentMethodObject = cls.getDeclaredConstructor().newInstance();
+            Class[] paramString = new Class[1];
+            paramString[0] = String.class;
+            Method methodCreate = cls.getMethod("create", paramString);
+            Object paymentMethodFactoryObject = methodCreate.invoke(paymentMethodObject, paymentMethodInput);
+            //------------
 
-            PaymentMethodFactory paymentMethodFactory = new PaymentMethodFactory();
-            PaymentMethod paymentMethod = paymentMethodFactory.create(paymentMethodInput);
-            PaymentService paymentService = new PaymentService(paymentMethod);
+            //PaymentMethodFactory paymentMethodFactory = new PaymentMethodFactory();
+            //PaymentMethod paymentMethod = paymentMethodFactory.create(paymentMethodInput);
 
-            boolean isPaymentSuccessful = paymentService.processPayment(amount);
+            boolean isPaymentSuccessful = false;
+
+            if(paymentMethodFactoryObject != null)
+            {
+                PaymentService paymentService = new PaymentService((PaymentMethod) paymentMethodFactoryObject);
+
+                isPaymentSuccessful = paymentService.processPayment(amount);
+            }
+
 
             if(isPaymentSuccessful)
             {

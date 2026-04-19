@@ -8,7 +8,7 @@ public class PaymentMethodFactory {
     public PaymentMethod create(String className) {
         try {
 
-            Class<?> paymentModel = Class.forName("com.n11.bootcamp.payment.main.models." + className);
+            Class<?> paymentModel = Class.forName("com.n11.bootcamp.payment.main.model." + className + "Payment");
             @Deprecated
             PaymentMethod paymentMethod = (PaymentMethod) paymentModel.newInstance();
 
@@ -18,7 +18,6 @@ public class PaymentMethodFactory {
             e.printStackTrace();
             return null;
         }
-
 
     }
 
