@@ -1,4 +1,6 @@
-package com.n11.bootcamp.payment.main;
+package com.n11.bootcamp.payment.main.models;
+
+import com.n11.bootcamp.payment.main.interfaces.PaymentMethod;
 
 public class CreditCardPayment implements PaymentMethod {
 
