@@ -4,53 +4,65 @@ import com.n11.bootcamp.payment.main.factory.PaymentMethodFactory;
 import com.n11.bootcamp.payment.main.interfaces.PaymentMethod;
 import com.n11.bootcamp.payment.main.service.PaymentService;
 
-import java.lang.reflect.Method;
 import java.util.Scanner;
+
 
 public class Test {
     public static void main(String[] args)
     {
         try
         {
+            boolean isApplicationRunning = true;
 
-            //PaymentService paymentService = new PaymentService(new CreditCardPayment());
-            //paymentService.processPayment(4700);
-
-            Scanner scan = new Scanner(System.in);
-
-            System.out.println("Please enter the payment method : ");
-            String paymentMethodInput = scan.nextLine();
-
-            System.out.println("Please enter your amount to pay : ");
-            double amount = scan.nextDouble();
-
-            //----------- Reflection
-            Class<?> cls = Class.forName("com.n11.bootcamp.payment.main.factory.PaymentMethodFactory");
-            Object paymentMethodObject = cls.getDeclaredConstructor().newInstance();
-            Class[] paramString = new Class[1];
-            paramString[0] = String.class;
-            Method methodCreate = cls.getMethod("create", paramString);
-            Object paymentMethodFactoryObject = methodCreate.invoke(paymentMethodObject, paymentMethodInput);
-            //------------
-
-            //PaymentMethodFactory paymentMethodFactory = new PaymentMethodFactory();
-            //PaymentMethod paymentMethod = paymentMethodFactory.create(paymentMethodInput);
-
-            boolean isPaymentSuccessful = false;
-
-            if(paymentMethodFactoryObject != null)
+            while(isApplicationRunning)
             {
-                PaymentService paymentService = new PaymentService((PaymentMethod) paymentMethodFactoryObject);
+                Scanner scan = new Scanner(System.in);
 
-                isPaymentSuccessful = paymentService.processPayment(amount);
+                System.out.println("Please enter the payment method : ");
+                String paymentMethodInput = scan.nextLine();
+
+                System.out.println("Please enter your amount to pay : ");
+                double amount = scan.nextDouble();
+
+
+                PaymentMethodFactory paymentMethodFactory = new PaymentMethodFactory();
+                PaymentMethod paymentMethod = paymentMethodFactory.create(paymentMethodInput);
+
+                boolean isPaymentSuccessful = false;
+
+                if (paymentMethod != null) {
+                    PaymentService paymentService = new PaymentService(paymentMethod);
+
+                    isPaymentSuccessful = paymentService.processPayment(amount);
+                }
+
+                if (isPaymentSuccessful) {
+                    System.out.println("Successful Operation.");
+                    Thread.sleep(1000);
+                }
+
+
+                while(true)
+                {
+                    System.out.println("If you want to exit the application please enter 0, Otherwise please enter 1 : ");
+                    String isUserWantToExit = scan.next();
+
+                    if (isUserWantToExit.equals("0"))
+                    {
+                        isApplicationRunning = false;
+                        break;
+                    }
+                    else if(isUserWantToExit.equals("1"))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid number !");
+                        Thread.sleep(700);
+                    }
+                }
             }
-
-
-            if(isPaymentSuccessful)
-            {
-                System.out.println("Successful Operation.");
-            }
-
 
         }
         catch (Exception ex)
