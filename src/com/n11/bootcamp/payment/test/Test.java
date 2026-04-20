@@ -42,6 +42,7 @@ public class Test {
                 }
 
 
+                // While loop keep application running
                 while(true)
                 {
                     System.out.println("If you want to exit the application please enter 0, Otherwise please enter 1 : ");
